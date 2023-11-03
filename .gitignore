@@ -159,3 +159,6 @@ dist
 
 # SvelteKit build / generate output
 .svelte-kit
+
+# MySQL folders
+docker/nginx-node/mysql
