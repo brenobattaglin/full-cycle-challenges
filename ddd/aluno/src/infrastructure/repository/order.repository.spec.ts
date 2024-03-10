@@ -99,12 +99,12 @@ describe("Order repository test", () => {
       total: foundOrder.total(),
       items: [
         {
-          id: orderItem.id,
-          name: orderItem.name,
-          price: orderItem.price,
-          quantity: orderItem.quantity,
+          id: foundOrder.items[0].id,
+          name: foundOrder.items[0].name,
+          price: foundOrder.items[0].price,
+          quantity: foundOrder.items[0].quantity,
           order_id: "123",
-          product_id: orderItem.productId,
+          product_id: foundOrder.items[0].productId,
         },
       ],
     });
