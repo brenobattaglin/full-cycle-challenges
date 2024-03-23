@@ -3,14 +3,23 @@ import Customer from "./customer";
 
 describe("Customer unit test", () => {
   it("should throw error when id is empty", () => {
-    expect(() => new Customer("", "name")).toThrow("Invalid id");
+    expect(() => {
+      let customer = new Customer("", "John");
+    }).toThrow("customer: Id is required");
   });
 
   it("should throw error when name is empty", () => {
-    expect(() => new Customer("id", "")).toThrow("Name is required");
+    expect(() => {
+      let customer = new Customer("123", "");
+    }).toThrow("customer: Name is required");
   });
 
-  // triple A
+  it("should throw error when name and id are empty", () => {
+    expect(() => {
+      let customer = new Customer("", "");
+    }).toThrow("customer: Id is required, customer: Name is required");
+  });
+
   it("should activate customer", () => {
     const customer = new Customer("12", "John ");
     const address = new Address("street", 123, "state", "zip");

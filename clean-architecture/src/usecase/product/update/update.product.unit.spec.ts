@@ -17,7 +17,7 @@ const MockRepository = () => {
         create: jest.fn(),
         findAll: jest.fn(),
         find: jest.fn().mockReturnValue(Promise.resolve(product)),
-        update: jest.fn().mockReturnValue(Promise.resolve(input)),
+        update: jest.fn(),
     };
 }
 
@@ -34,7 +34,6 @@ describe("Unit Test update product use case", () => {
     it("should throw an error when name is missing", async () => {
         const productRepository = MockRepository();
         const useCase = new UpdateProductUseCase(productRepository);
-
         input.name = "";
 
         await expect(useCase.execute(input)).rejects.toThrow("Name is required");

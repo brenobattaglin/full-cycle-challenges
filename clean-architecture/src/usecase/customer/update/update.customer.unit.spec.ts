@@ -9,7 +9,7 @@ const customer = CustomerFactory.createWithAddress(
 
 const input = {
     id: customer.id,
-    name: "John Updated",
+    name: "John",
     address: {
         street: "Street",
         city: "City",
@@ -23,7 +23,7 @@ const MockRepository = () => {
         create: jest.fn(),
         findAll: jest.fn(),
         find: jest.fn().mockReturnValue(Promise.resolve(customer)),
-        update: jest.fn().mockReturnValue(Promise.resolve(input)),
+        update: jest.fn(),
     };
 }
 
@@ -41,7 +41,7 @@ describe("Unit Test update customer use case", () => {
         const customerRepository = MockRepository();
         const useCase = new UpdateCustomerUseCase(customerRepository);
 
-        input.name = "";
+        input.name = '';
 
         await expect(useCase.execute(input)).rejects.toThrow("Name is required");
     });
