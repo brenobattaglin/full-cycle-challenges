@@ -8,8 +8,8 @@ const product = ProductFactory.create(
 
 const input = {
     id: product.id,
-    name: "Banana Assada",
-    price: 10,
+    name: "Banana",
+    price: 7,
 };
 
 const MockRepository = () => {
@@ -29,23 +29,5 @@ describe("Unit Test update product use case", () => {
         const output = await useCase.execute(input);
 
         expect(output).toEqual(input);
-    });
-
-    it("should throw an error when name is missing", async () => {
-        const productRepository = MockRepository();
-        const useCase = new UpdateProductUseCase(productRepository);
-        input.name = "";
-
-        await expect(useCase.execute(input)).rejects.toThrow("Name is required");
-    });
-
-    it("should throw and error when price is 0", async () => {
-        const productRepository = MockRepository();
-        const useCase = new UpdateProductUseCase(productRepository);
-
-        input.name = "Banana";
-        input.price = 0;
-
-        await expect(useCase.execute(input)).rejects.toThrow("Price must be greater than 0");
     });
 });

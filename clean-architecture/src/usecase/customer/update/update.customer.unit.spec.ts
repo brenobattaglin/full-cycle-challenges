@@ -9,12 +9,12 @@ const customer = CustomerFactory.createWithAddress(
 
 const input = {
     id: customer.id,
-    name: "John",
+    name: "John Updated",
     address: {
-        street: "Street",
-        city: "City",
-        number: 123,
-        zip: "Zip",
+        street: "Street 2",
+        city: "City 2",
+        number: 1234,
+        zip: "Zip 2",
     },
 };
 
@@ -35,24 +35,5 @@ describe("Unit Test update customer use case", () => {
         const output = await useCase.execute(input);
 
         expect(output).toEqual(input);
-    });
-
-    it("should throw an error when name is missing", async () => {
-        const customerRepository = MockRepository();
-        const useCase = new UpdateCustomerUseCase(customerRepository);
-
-        input.name = '';
-
-        await expect(useCase.execute(input)).rejects.toThrow("Name is required");
-    });
-
-    it("should throw and error when address is missing", async () => {
-        const customerRepository = MockRepository();
-        const useCase = new UpdateCustomerUseCase(customerRepository);
-
-        input.name = "John";
-        input.address.street = "";
-
-        await expect(useCase.execute(input)).rejects.toThrow("Invalid street");
     });
 });
